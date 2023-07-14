@@ -1,5 +1,5 @@
 
-const Input = ({ label, setValue, id, type="text", ...props }) => {
+const Input = ({ label, setValue, id, required=true, type="text", ...props }) => {
   id = id ?? label.replace(" ", "_");
 
   return (
@@ -7,6 +7,7 @@ const Input = ({ label, setValue, id, type="text", ...props }) => {
       <input
         id={id}
         type={type}
+        required={required}
         className="form-control"
         onChange={e => setValue(e.target.value)}
         {...props} />

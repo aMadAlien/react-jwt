@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from '../interceptors/axios'
 import Input from "../components/Input";
 
@@ -42,6 +42,10 @@ const Login = () => {
                 {error && <div className="pb-2 text-danger">{error}</div> }
 
                 <button className="btn btn-primary w-100 py-2" type="submit">Login</button>
+
+                <div>
+                    <Link to="/forgot-password">Forgot password</Link>
+                </div>
             </form>
         </main>
     )

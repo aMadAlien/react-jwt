@@ -18,8 +18,10 @@ axiosInstance.interceptors.request.use(req => {
 
 
 axiosInstance.interceptors.response.use(resp => resp, async error => {
-    localStorage.clear();
-    window.location = "/login";
+    if (error.response.status === 401) {
+        localStorage.clear();
+        window.location = "/login";
+    }
 
     return error;
 });
