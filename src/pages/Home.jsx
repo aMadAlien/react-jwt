@@ -8,21 +8,20 @@ const Home = () => {
 
   useEffect(() => {
     (async () => {
-      try {
-        await axiosInstance.get("auth/user").then(res => setName(res.data.name));
-      } catch(e) {
-        navigate("/login");
-      }
+      await axiosInstance.get("auth/user")
+        .then(res => setName(res.data.name))
+        .catch(e => {
+          console.error(e)
+          navigate("/login");
+        });
     })()
-
   }, []);
 
   const logout = async () => {
-    await axiosInstance.post("/auth/logout", {}, { withCredentials: true })
-      .finally(navigate("/login"));
-
-      localStorage.clear();
-    }
+    await axiosInstance.post("/auth/logout", {}, { withCredentials: true });
+    localStorage.clear();
+    navigate("/login");
+  }
 
   return (
     <div className='form-signin mt-5 text-center'>
